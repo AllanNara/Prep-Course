@@ -5,12 +5,24 @@ function deObjetoAmatriz(objeto){
   // un par clave-valor en forma de matriz.
   //Ejemplo: 
   /*objeto({
-      D: 1,
-      B: 2,
-      C: 3
+      D: 1,         --> ["D", 1]
+      B: 2,         --> ["B", 2]
+      C: 3          --> ["C", 3]
     }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
   //Escribe tu código aquí
+
+  // let matriz = [];
+
+  // for(let prop in objeto) {
+  //   matriz.push([prop, objeto[prop]])
+  // }
+
+  // return matriz
+
+  return Object.entries(objeto)
 }
+
+// console.log(deObjetoAmatriz({ D: 1, B: 2, C: 3 }))
 
 
 function numberOfCharacters(string) {
@@ -18,15 +30,41 @@ function numberOfCharacters(string) {
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 } 
   //Escribe tu código aquí
+  let str = string.split('').sort()
+  let result = {}
+  for (let i = 0; i < str.length; i++) {
+    if(result[str[i]] === undefined) {
+      result[str[i]] = 1
+    } else result[str[i]] = result[str[i]] + 1
+  }
+  return result
 }
 
+// console.log(numberOfCharacters('asabasdfbbv'))
 
 function capToFront(s) {
   //Realiza una función que reciba como parámetro un string y mueva todas las letras mayúsculas
   //al principio de la palabra.
   //Ejemplo: soyHENRY -> HENRYsoy
   //Escribe tu código aquí
+  let str = s.split('')
+
+  let may = ''
+  let min = ''
+
+  for (let i = 0; i < str.length; i++) {
+    if(str[i] === str[i].toUpperCase()) {
+      may += str[i]
+    } else {
+      min += str[i]
+    }
+  }
+
+  return may + min
 }
+
+// console.log(capToFront('soyHENRY'))
+
 
 
 function asAmirror(str) {
@@ -35,7 +73,14 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí
+  var array = str.split(' ')
+  for(var i = 0; i < array.length; i++) {
+    array[i] = array[i].split('').reverse().join('')
+  }
+  return array.join(' ')
 } 
+
+console.log(asAmirror("The Henry Challenge is close!"))
 
 
 function capicua(numero){
